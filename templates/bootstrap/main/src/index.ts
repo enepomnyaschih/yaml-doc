@@ -33,6 +33,11 @@ export default function applyBootstrapTemplate(project: Project, outputPath: str
 			filePath = path.resolve(outputPath, `${fileId}.html`);
 		writeFile(fileId, filePath, renderFile(file));
 	}
+	console.log("Writing static files...");
+	const statics = path.resolve(__dirname, "static");
+	fs.readdirSync(statics).forEach(file => {
+		fs.copyFileSync(path.resolve(statics, file), path.resolve(outputPath, file));
+	});
 }
 
 function writeFile(fileId: string, filePath: string, html: string) {
@@ -45,7 +50,7 @@ function renderFile(file: SourceFile) {
 	const homeUrl = getRelativeUrl("", file.id),
 		isTutorial = file.project.files.hasOwnProperty("tutorials/tutorial1");
 	return `<!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
 		<title>${file.title}</title>
 		<link rel="stylesheet" type="text/css" href="${getRelativeUrl("bootstrap.min.css", file.id)}">
@@ -147,11 +152,11 @@ ${symbol.visit(symbolIndexRenderVisitor)}`;
 
 const symbolIndexRenderVisitor: SymbolVisitor<string> = {
 
-	visitHeader(_symbol: HeaderSymbol): string {
+	visitHeader(): string {
 		return "";
 	},
 
-	visitValue(_symbol: ValueSymbol): string {
+	visitValue(): string {
 		return "";
 	},
 
@@ -172,7 +177,7 @@ ${renderIndexDictionary(symbol, symbol.staticProperties, "staticProperties", "St
 ${renderIndexDictionary(symbol, symbol.staticMethods, "staticMethods", "Static methods")}
 </nav>`
 	}
-}
+};
 
 function renderIndexDictionary(struct: StructSymbol, dict: Dictionary<IMember>, key: string, title: string): string {
 	if (DictionaryUtils.isEmpty(dict)) {
