@@ -14,18 +14,14 @@ export default class Project {
 	readonly filesByToken: Dictionary<SourceFile> = {}; // null value indicates ambiguity
 	readonly name: string;
 	readonly inputRelativePath: string;
-	readonly outputRelativePath: string;
 	readonly docTitle: string;
-	readonly statics: StaticDefinition[];
 	readonly context: Context;
 	readonly includes: Dictionary<string> = {};
 
 	constructor(readonly fileAbsolutePath: string, json: ProjectJson) {
 		this.name = json.name;
-		this.inputRelativePath = json.input || "doc";
-		this.outputRelativePath = json.output || "docoutput";
+		this.inputRelativePath = json.input || "src";
 		this.docTitle = json.docTitle || "Documentation";
-		this.statics = json.statics || [];
 		this.context = new ProjectContext(this, json.references);
 		this.includes = json.includes || {};
 	}
@@ -36,10 +32,6 @@ export default class Project {
 
 	get inputAbsolutePath() {
 		return this.getAbsolutePath(this.inputRelativePath);
-	}
-
-	get outputAbsolutePath() {
-		return this.getAbsolutePath(this.outputRelativePath);
 	}
 
 	getAbsolutePath(relativePath: string) {
@@ -77,16 +69,8 @@ export interface ProjectJson {
 	readonly input?: string;
 	readonly output?: string;
 	readonly docTitle?: string;
-	readonly statics?: StaticDefinition[];
 	readonly references?: Dictionary<Reference>;
 	readonly includes?: Dictionary<string>;
-}
-
-export interface StaticDefinition {
-
-	readonly src: string;
-	readonly dest: string;
-	readonly rename?: boolean;
 }
 
 class ProjectContext extends Context {

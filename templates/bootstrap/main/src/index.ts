@@ -27,16 +27,16 @@ import {
 import {mkdir} from "yaml-doc/utils/File";
 import {htmlEncode} from "yaml-doc/utils/String";
 
-export default function applyBootstrapTemplate(project: Project) {
+export default function applyBootstrapTemplate(project: Project, outputPath: string) {
 	for (let fileId in project.files) {
-		const file = project.files[fileId];
-		writeFile(project, fileId, renderFile(file));
+		const file = project.files[fileId],
+			filePath = path.resolve(outputPath, `${fileId}.html`);
+		writeFile(fileId, filePath, renderFile(file));
 	}
 }
 
-function writeFile(project: Project, fileId: string, html: string) {
+function writeFile(fileId: string, filePath: string, html: string) {
 	console.log(`Writing ${fileId}...`);
-	const filePath = path.resolve(project.outputAbsolutePath, `${fileId}.html`);
 	mkdir(filePath);
 	fs.writeFileSync(filePath, html);
 }
