@@ -1,0 +1,20 @@
+{
+  "name": "yaml-doc-bootstrap",
+  "version": "0.1.0",
+  "description": "Bootstrap template for yaml-doc.",
+  "bugs": {
+    "url": "https://github.com/enepomnyaschih/yaml-doc/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Egor Nepomnyaschih",
+    "email": "enepomnyaschih@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/enepomnyaschih/yaml-doc.git"
+  },
+  "peerDependencies": {
+    "yaml-doc": "~0.1.0"
+  }
+}

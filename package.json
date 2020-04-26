@@ -1,35 +1,10 @@
 {
-  "name": "yaml-docgen",
-  "version": "0.1.0",
-  "description": "YAML-based software documentation generator.",
-  "bugs": {
-    "url": "https://github.com/enepomnyaschih/docgen/issues"
-  },
-  "license": "MIT",
-  "author": {
-    "name": "Egor Nepomnyaschih",
-    "email": "enepomnyaschih@gmail.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/enepomnyaschih/docgen.git"
-  },
-  "main": "dist/index.js",
-  "dependencies": {
-    "js-yaml": "~3.13.1",
-    "yargs": "~15.3.1"
-  },
+  "private": true,
+  "name": "yaml-doc-common",
   "devDependencies": {
     "@types/js-yaml": "~3.12.1",
     "@types/node": "~8.10.59",
-    "@types/yargs": "~15.0.4",
-    "typescript": "~3.7.4"
-  },
-  "files": [
-    "/README.md",
-    "/dist"
-  ],
-  "bin": {
-    "yaml-doc": "dist/index.js"
+    "typescript": "~3.7.4",
+    "yaml-doc": "file:main/dist"
   }
 }

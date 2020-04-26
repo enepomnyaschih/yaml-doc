@@ -29,7 +29,7 @@ function parseProjectDir(project: Project, relativePath?: string) {
 	});
 }
 
-export default function parseProject(projectFileAbsolutePath: string): Project {
+export default function parseYamlDocProject(projectFileAbsolutePath: string): Project {
 	if (!/\.yaml$/.test(projectFileAbsolutePath)) {
 		projectFileAbsolutePath = path.resolve(projectFileAbsolutePath, "doc.yaml");
 	}

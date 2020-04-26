@@ -1,20 +1,20 @@
 import * as fs from "fs";
 import * as path from "path";
-import Constructor from "../Constructor";
-import Dictionary from "../Dictionary";
-import IMember from "../members/IMember";
-import MethodMember from "../members/Method";
-import PropertyMember from "../members/Property";
-import Project from "../Project";
-import SourceFile from "../SourceFile";
-import FunctionSymbol from "../symbols/Function";
-import HeaderSymbol from "../symbols/Header";
-import ISymbol from "../symbols/ISymbol";
-import StructSymbol, {TypeVar} from "../symbols/Struct";
-import ValueSymbol from "../symbols/Value";
-import SymbolVisitor from "../SymbolVisitor";
-import Topic from "../Topic";
-import * as DictionaryUtils from "../utils/Dictionary";
+import Constructor from "yaml-doc/Constructor";
+import Dictionary from "yaml-doc/Dictionary";
+import IMember from "yaml-doc/members/IMember";
+import MethodMember from "yaml-doc/members/Method";
+import PropertyMember from "yaml-doc/members/Property";
+import Project from "yaml-doc/Project";
+import SourceFile from "yaml-doc/SourceFile";
+import FunctionSymbol from "yaml-doc/symbols/Function";
+import HeaderSymbol from "yaml-doc/symbols/Header";
+import ISymbol from "yaml-doc/symbols/ISymbol";
+import StructSymbol, {TypeVar} from "yaml-doc/symbols/Struct";
+import ValueSymbol from "yaml-doc/symbols/Value";
+import SymbolVisitor from "yaml-doc/SymbolVisitor";
+import Topic from "yaml-doc/Topic";
+import * as DictionaryUtils from "yaml-doc/utils/Dictionary";
 import {
 	getReferenceUrl,
 	getRelativeUrl,
@@ -23,11 +23,11 @@ import {
 	renderReference,
 	renderStructReference,
 	renderText
-} from "../utils/Doc";
-import {mkdir} from "../utils/File";
-import {htmlEncode} from "../utils/String";
+} from "yaml-doc/utils/Doc";
+import {mkdir} from "yaml-doc/utils/File";
+import {htmlEncode} from "yaml-doc/utils/String";
 
-export default function bootstrapTemplate(project: Project) {
+export default function applyBootstrapTemplate(project: Project) {
 	for (let fileId in project.files) {
 		const file = project.files[fileId];
 		writeFile(project, fileId, renderFile(file));
