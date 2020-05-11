@@ -19,12 +19,10 @@ To apply the template, create a simple NodeJS script like this:
         applyBootstrapTemplate = require("yaml-doc-bootstrap").default;
     
     const project = parseYamlDocProject(path.resolve(__dirname, "project.yaml")),
-      dist = path.resolve(__dirname, "dist");
+        dist = path.resolve(__dirname, "dist");
     fs.rmdirSync(dist, {recursive: true});
     applyBootstrapTemplate(project, dist);
 
-Create yaml-doc-compatible project.yaml in the same folder. To compile the documentation, run:
-
-    node compile.js
+Create yaml-doc-compatible project.yaml in the same folder. To compile the documentation, run the script in NodeJS.
 
 Project license is [MIT](https://github.com/enepomnyaschih/yaml-doc/blob/master/LICENSE).
